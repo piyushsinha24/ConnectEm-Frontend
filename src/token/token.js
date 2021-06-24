@@ -1,17 +1,17 @@
 const colors = {
   primary: {
     default: '#26d07c',
-    dark: '#465062' 
+    dark: '#465062',
   },
   typography: {
     light: {
-      default: 'rgba(255, 255, 255, 0.8)'
+      default: 'rgba(255, 255, 255, 1)',
     },
     dark: {
-      default: 'rgba(0, 0, 0, 0.8)'
-    }
-  }
-}
+      default: 'rgba(0, 0, 0, 0.8)',
+    },
+  },
+};
 
 const typography = {
   size: {
@@ -20,13 +20,13 @@ const typography = {
     24: 24,
     36: 36,
     54: 54,
-    81: 81
+    81: 81,
   },
   font: {
     work: ['Work Sans', 'sans-serif'],
-    epilogue: ['Epilogue', 'sans-serif']
-  }
-}
+    epilogue: ['Epilogue', 'sans-serif'],
+  },
+};
 
 const spacing = {
   4: 4,
@@ -39,10 +39,10 @@ const spacing = {
   56: 56,
   72: 72,
   80: 80,
-}
+};
 
 module.exports = {
   colors,
   typography,
-  spacing
-}
+  spacing,
+};

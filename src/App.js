@@ -1,9 +1,7 @@
+import LandingPage from './components/LandingPage';
+
 function App() {
-  return (
-    <div className="font-bold text-81 text-center text-primary-default font-epilogue">
-      ConnectEm
-    </div>
-  );
+  return <LandingPage />;
 }
 
 export default App;
