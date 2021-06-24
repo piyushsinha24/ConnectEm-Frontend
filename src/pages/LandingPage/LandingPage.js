@@ -1,6 +1,6 @@
-import waves from '../assets/images/waves.svg';
-import topSquares from '../assets/images/top-squares.svg';
-import bottomSquares from '../assets/images/bottom-squares.svg';
+import waves from '../../assets/images/waves.svg';
+import topSquares from '../../assets/images/top-squares.svg';
+import bottomSquares from '../../assets/images/bottom-squares.svg';
 
 function LandingPage() {
   return (
