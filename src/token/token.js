@@ -39,6 +39,7 @@ const spacing = {
   56: 56,
   72: 72,
   80: 80,
+  88: 88,
 };
 
 module.exports = {
