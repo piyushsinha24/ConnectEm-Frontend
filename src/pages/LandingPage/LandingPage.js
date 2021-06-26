@@ -17,13 +17,13 @@ function LandingPage() {
             alt="waves"
           ></img>
         </div>
-        <div className="mx-48 md:mx-88">
+        <div className="mx-48 md:mx-81">
           <div className="text-24 text-primary-dark font-work">Your one stop</div>
           <div className="text-24 text-primary-dark font-work">
             for scheduling meeting
           </div>
         </div>
-        <button className="rounded font-bold text-16 text-typography-light-default bg-primary-default shadow-xl hover:bg-primary-dark mx-48 md:mx-88 my-16 p-16">
+        <button className="rounded font-bold text-16 text-typography-light-default bg-primary-default shadow-xl hover:bg-primary-dark mx-48 md:mx-81 my-16 p-16">
           Get Started
         </button>
       </div>
