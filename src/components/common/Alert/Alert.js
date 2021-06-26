@@ -8,8 +8,7 @@ const alertType = {
 };
 
 const Alert = ({ displayType, children, className, ...rest }) => {
-  const defaultClassName =
-    'rounded-4 font-work text-12 text-dark-default w-full py-8 px-12 border-1 border-dark-default';
+  const defaultClassName = 'rounded-4 font-work text-12 w-full py-8 px-12 border-1';
 
   const typeToClassNames = (displayType) => {
     switch (displayType) {
@@ -20,7 +19,7 @@ const Alert = ({ displayType, children, className, ...rest }) => {
       case alertType.INFO:
         return 'text-blue-default border-blue-default bg-blue-light';
       default:
-        return defaultClassName;
+        return '';
     }
   };
 

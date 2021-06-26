@@ -93,11 +93,11 @@ const Login = () => {
                 />
               </div>
               <div className="mt-16">
-                {isLoading && <Alert displayType="info">Loading...</Alert>}
-                {apiError && <Alert displayType="danger">{apiError}</Alert>}
-                {loginSuccess && (
-                  <Alert displayType="success">Login success, redirecting...</Alert>
+                {isLoading && (
+                  <Alert displayType="info">Logging in, please wait...</Alert>
                 )}
+                {apiError && <Alert displayType="danger">{apiError}</Alert>}
+                {loginSuccess && <Alert displayType="success">Login success!</Alert>}
               </div>
               <div className="mt-16">
                 <Button displayType="primary" type="submit">

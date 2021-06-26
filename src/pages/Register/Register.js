@@ -120,12 +120,12 @@ const Register = () => {
                 />
               </div>
               <div className="mt-16">
-                {isLoading && <Alert displayType="info">Loading...</Alert>}
+                {isLoading && (
+                  <Alert displayType="info">Creating a new account...</Alert>
+                )}
                 {apiError && <Alert displayType="danger">{apiError}</Alert>}
                 {loginSuccess && (
-                  <Alert displayType="success">
-                    Registration success, redirecting...
-                  </Alert>
+                  <Alert displayType="success">Registration success!</Alert>
                 )}
               </div>
               <div className="mt-16">
