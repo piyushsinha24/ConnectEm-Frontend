@@ -19,8 +19,8 @@ const colors = {
     light: 'rgba(38, 208, 124, 0.1)',
   },
   blue: {
-    default: '#1964b9',
-    light: 'rgba(25, 100, 185, 0.1)',
+    default: '#4419b9',
+    light: 'rgba(68, 25, 185, 0.1)',
   },
 };
 
