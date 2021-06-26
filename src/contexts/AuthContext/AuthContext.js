@@ -36,7 +36,7 @@ export const AuthContextProvider = ({ children }) => {
   };
 
   const isAuthenticated = () => {
-    return authState.token && authState.userInfo;
+    return !!authState.token && !!authState.userInfo;
   };
 
   const authObject = {

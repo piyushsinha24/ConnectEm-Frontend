@@ -4,6 +4,7 @@ const colors = {
   },
   light: {
     default: 'rgba(255, 255, 255, 0.8)',
+    bright: 'rgba(255, 255, 255, 1)',
     grey: 'rgba(0, 0, 0, 0.1)',
   },
   secondary: {
@@ -18,8 +19,8 @@ const colors = {
     light: 'rgba(38, 208, 124, 0.1)',
   },
   blue: {
-    default: '#1964b9',
-    light: 'rgba(25, 100, 185, 0.1)',
+    default: '#4419b9',
+    light: 'rgba(68, 25, 185, 0.1)',
   },
 };
 
@@ -46,6 +47,7 @@ const spacing = {
   16: '16px',
   24: '24px',
   32: '32px',
+  36: '36px',
   40: '40px',
   48: '48px',
   56: '56px',
