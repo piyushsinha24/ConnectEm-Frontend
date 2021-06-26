@@ -1,3 +1,4 @@
+import classNames from 'classnames';
 import React from 'react';
 
 const btnType = {
@@ -6,31 +7,58 @@ const btnType = {
   DISABLED: 'disabled',
 };
 
-const Button = ({ displayType, className, children, ...rest }) => {
-  const defaultClassName = `box-border h-48 rounded-4 font-bold text-16 py-8 px-16 ${className}`;
+const btnSize = {
+  SM: 'sm',
+  MD: 'md',
+  LG: 'lg',
+};
+
+const Button = ({ displayType, size, className, children, ...rest }) => {
+  const defaultClassName = `box-border rounded-4 font-bold`;
+
+  const sizeToClassNames = (size) => {
+    switch (size) {
+      case btnSize.SM:
+        return 'text-12 py-8 px-16 h-36';
+      case btnSize.MD:
+        return 'text-16 py-8 px-16 h-48';
+      case btnSize.LG:
+        return 'text-16 py-8 px-16';
+      default:
+        return '';
+    }
+  };
 
   const typeToClassNames = (displayType) => {
     switch (displayType) {
       case btnType.PRIMARY:
-        return `${defaultClassName} text-light-default bg-primary-default`;
+        return 'text-light-bright bg-primary-default';
       case btnType.SECONDARY:
-        return `${defaultClassName} text-dark-default border-dark-default border-2`;
+        return 'text-dark-default border-dark-default border-2';
       case btnType.DISABLED:
-        return `${defaultClassName} text-light-grey border-light-grey border-2 cursor-not-allowed`;
+        return 'text-light-grey border-light-grey border-2 cursor-not-allowed';
       default:
-        return defaultClassName;
+        return '';
     }
   };
 
+  const allClassNames = classNames(
+    defaultClassName,
+    sizeToClassNames(size),
+    typeToClassNames(displayType),
+    className
+  );
+
   return (
-    <button {...rest} className={typeToClassNames(displayType)}>
+    <button {...rest} className={allClassNames}>
       {children}
     </button>
   );
 };
 
 Button.defaultProps = {
-  displayType: '',
+  displayType: btnType.PRIMARY,
+  size: btnSize.MD,
   className: '',
 };
 

@@ -1,6 +1,7 @@
 import { lazy, Suspense } from 'react';
 import { Switch, Route } from 'react-router-dom';
 import ProtectedRoute from './components/common/ProtectedRoute';
+import Navbar from './components/common/Navbar';
 
 const LandingPage = lazy(() => import('./pages/LandingPage'));
 const LoginPage = lazy(() => import('./pages/Login'));
@@ -10,6 +11,7 @@ const Dashboard = lazy(() => import('./pages/Dashboard'));
 function App() {
   return (
     <div>
+      <Navbar />
       <Switch>
         <Suspense fallback={<div>Loading...</div>}>
           <Route exact path="/" component={LandingPage} />

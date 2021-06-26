@@ -3,13 +3,13 @@ import Container from '../../components/common/Container';
 import Input from '../../components/common/Input';
 import Button from '../../components/common/Button';
 import Alert from '../../components/common/Alert';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import { useAuthContext } from '../../contexts/AuthContext';
 import { registerUser } from '../../services/authService';
 import { registerSchema, validate } from '../../utility/validation';
 
 const Register = () => {
-  const { setAuthInfo } = useAuthContext();
+  const { setAuthInfo, isAuthenticated } = useAuthContext();
   const [formData, setFormData] = useState({
     firstName: '',
     lastName: '',
@@ -69,12 +69,18 @@ const Register = () => {
     }
   };
 
+  if (isAuthenticated()) {
+    return <Redirect to="/dashboard" />;
+  }
+
   return (
     <div className="bg-light-grey">
       <Container>
-        <div className="font-work grid place-items-center w-full h-screen">
+        <div className="font-work grid place-items-center w-full h-screen mt-56 xl:mt-0">
           <div className="bg-light-default h-full w-full py-32 px-16 xl:p-32 xl:w-400 xl:h-auto xl:shadow-card xl:rounded-4">
-            <h2 className="font-epilogue text-24 font-bold">ConnectEm</h2>
+            <h2 className="font-epilogue text-24 font-bold">
+              Connect<span className="text-primary-default">Em</span>
+            </h2>
             <p className="mb-16">Create an account</p>
             <form onSubmit={onFormSubmit}>
               <div className="mb-16">
