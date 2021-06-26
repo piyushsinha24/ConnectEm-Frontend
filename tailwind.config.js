@@ -1,4 +1,12 @@
-const { colors, typography, spacing } = require('./src/token/token');
+const {
+  colors,
+  typography,
+  spacing,
+  maxWidths,
+  borederRadius,
+  borderWidth,
+  shadows,
+} = require('./src/token/token');
 
 module.exports = {
   purge: ['./src/**/*.{js,jsx,ts,tsx}', './public/index.html'],
@@ -13,9 +21,21 @@ module.exports = {
     fontSize: {
       ...typography.size,
     },
+    maxWidth: {
+      ...maxWidths,
+    },
     extend: {
       spacing: {
         ...spacing,
+      },
+      borderRadius: {
+        ...borederRadius,
+      },
+      borderWidth: {
+        ...borderWidth,
+      },
+      boxShadow: {
+        ...shadows,
       },
     },
   },
