@@ -188,6 +188,11 @@ const Dashboard = () => {
             {isLoading && loadingCard()}
             {isEvent && events.map((e, index) => eventCard(e, index))}
           </div>
+          {!isEvent && !isLoading && (
+            <div className="flex justify-center items-center">
+              No events created.
+            </div>
+          )}
         </div>
       </Container>
     </div>

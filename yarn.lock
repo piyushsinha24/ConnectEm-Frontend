@@ -9521,6 +9521,11 @@
     "regenerator-runtime" "^0.13.7"
     "whatwg-fetch" "^3.4.1"
 
+"react-date-object@^1.3.10":
+  "integrity" "sha512-NFlcwqpA19v6rujrfueS3Ef4Tpg/Pq0C3aeY/tv1l3delRDCUJzNBTSJNcMiKuH7ajBos9d1dvvpwdiCkIbHEg=="
+  "resolved" "https://registry.npmjs.org/react-date-object/-/react-date-object-1.3.10.tgz"
+  "version" "1.3.10"
+
 "react-dev-utils@^11.0.3":
   "integrity" "sha512-dx0LvIGHcOPtKbeiSUM4jqpBl3TcY7CDjZdfOIcKeznE7BWr9dg0iPG90G5yfVQ+p/rGNMXdbfStvzQZEVEi4A=="
   "resolved" "https://registry.npmjs.org/react-dev-utils/-/react-dev-utils-11.0.4.tgz"
@@ -9551,7 +9556,7 @@
     "strip-ansi" "6.0.0"
     "text-table" "0.2.0"
 
-"react-dom@^17.0.2":
+"react-dom@^17.0.2", "react-dom@>=16.8.0":
   "integrity" "sha512-s4h96KtLDUQlsENhMn1ar8t2bEa+q/YAtj8pPPdIjPDGBDIVNsrD9aXNWqspUe6AzKCIG0C1HZZLqLV7qpOBGA=="
   "resolved" "https://registry.npmjs.org/react-dom/-/react-dom-17.0.2.tgz"
   "version" "17.0.2"
@@ -9559,6 +9564,11 @@
     "loose-envify" "^1.1.0"
     "object-assign" "^4.1.1"
     "scheduler" "^0.20.2"
+
+"react-element-popper@^1.0.10":
+  "integrity" "sha512-K/IAYtsQJQKaUmKMYd0MGK/g95HpGk/K9tUbu+m+dcS2Icfb6THsVP0YCccOS2/Ng//h8CkturLbbapBhheC7Q=="
+  "resolved" "https://registry.npmjs.org/react-element-popper/-/react-element-popper-1.0.10.tgz"
+  "version" "1.0.10"
 
 "react-error-overlay@^6.0.9":
   "integrity" "sha512-nQTTcUu+ATDbrSD1BZHr5kgSD4oF8OFjxun8uAaL8RwPBacGBNPf/yAuVVdx17N8XNzRDMrZ9XcKZHCjPW+9ew=="
@@ -9574,6 +9584,14 @@
   "integrity" "sha512-NAnt2iGDXohE5LI7uBnLnqvLQMtzhkiAOLXTmv+qnF9Ky7xAPcX8Up/xWIhxvLVGJvuLiNc4xQLtuqDRzb4fSA=="
   "resolved" "https://registry.npmjs.org/react-is/-/react-is-17.0.1.tgz"
   "version" "17.0.1"
+
+"react-multi-date-picker@^2.10.0":
+  "integrity" "sha512-IUsxIuKno7Qp0kbdZk7mf55TO9pUS8qeQ8mqSNoP1KF3WENdc1g3tdsgxfvKw2WXJn1N6RPGlLGrzKI5raQGMA=="
+  "resolved" "https://registry.npmjs.org/react-multi-date-picker/-/react-multi-date-picker-2.10.0.tgz"
+  "version" "2.10.0"
+  dependencies:
+    "react-date-object" "^1.3.10"
+    "react-element-popper" "^1.0.10"
 
 "react-refresh@^0.8.3":
   "integrity" "sha512-X8jZHc7nCMjaCqoU+V2I0cOhNW+QMBwSUkeXnTi8IPe6zaRWfn60ZzvFDZqWPfmSJfjub7dDW1SP0jaHWLu/hg=="
@@ -9675,7 +9693,7 @@
   optionalDependencies:
     "fsevents" "^2.1.3"
 
-"react@^17.0.2":
+"react@^17.0.2", "react@>=16.8.0":
   "integrity" "sha512-gnhPt75i/dq/z3/6q/0asP78D0u592D5L1pd7M8P+dck6Fu/jJeL6iVVK23fptSUZj8Vjf++7wXA8UNclGQcbA=="
   "resolved" "https://registry.npmjs.org/react/-/react-17.0.2.tgz"
   "version" "17.0.2"
