@@ -24,7 +24,7 @@ protectedAxios.interceptors.response.use(
   (error) => {
     const code = error && error.response ? error.response.status : 0;
     if (code === 401 || code === 403) {
-      console.log('error code', code); //TODO: Handle
+      alert('Not authorised to access');
     }
     return Promise.reject(error);
   }

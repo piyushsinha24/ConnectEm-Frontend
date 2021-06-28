@@ -7,6 +7,7 @@ const LandingPage = lazy(() => import('./pages/LandingPage'));
 const LoginPage = lazy(() => import('./pages/Login'));
 const RegisterPage = lazy(() => import('./pages/Register'));
 const Dashboard = lazy(() => import('./pages/Dashboard'));
+const CreateEvent = lazy(() => import('./pages/CreateEvent'));
 
 function App() {
   return (
@@ -19,6 +20,9 @@ function App() {
           <Route path="/register" component={RegisterPage} />
           <ProtectedRoute path="/dashboard">
             <Dashboard />
+          </ProtectedRoute>
+          <ProtectedRoute path="/create">
+            <CreateEvent />
           </ProtectedRoute>
         </Suspense>
       </Switch>
