@@ -19,9 +19,9 @@ const Button = ({ displayType, size, className, children, ...rest }) => {
   const sizeToClassNames = (size) => {
     switch (size) {
       case btnSize.SM:
-        return 'text-12 py-8 px-16 h-36';
+        return 'text-12 px-16 h-36';
       case btnSize.MD:
-        return 'text-16 py-8 px-16 h-48';
+        return 'text-16 px-16 h-48';
       case btnSize.LG:
         return 'text-16 py-8 px-16';
       default:

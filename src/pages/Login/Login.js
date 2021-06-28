@@ -19,7 +19,8 @@ const Login = () => {
   const onInputChange = async (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
 
-    if (apiError) setApiError('');
+    setApiError('');
+    setErrors((prev) => ({ ...prev, [e.target.name]: '' }));
   };
 
   const onFormSubmit = async (e) => {
@@ -67,7 +68,7 @@ const Login = () => {
   return (
     <div className="bg-light-grey">
       <Container>
-        <div className="font-work grid place-items-center w-full h-screen mt-56 xl:mt-0">
+        <div className="font-work grid place-items-center w-full h-screen mt-56 xl:mt-72">
           <div className="bg-light-default h-full w-full py-32 px-16 xl:p-32 xl:w-400 xl:h-auto xl:shadow-card xl:rounded-4">
             <h2 className="font-epilogue text-24 font-bold">
               Connect<span className="text-primary-default">Em</span>
@@ -76,7 +77,7 @@ const Login = () => {
             <form onSubmit={onFormSubmit}>
               <div className="mb-16">
                 <Input
-                  type="text"
+                  type="email"
                   name="email"
                   placeholder="Email"
                   onChange={onInputChange}
