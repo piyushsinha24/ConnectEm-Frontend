@@ -86,7 +86,7 @@ const Dashboard = () => {
     >
       <div className="h-full">
         <div className="flex flex-col py-4 h-full w-full">
-          <Link to={`/${e.id}`}>
+          <Link to={`/event/${e.id}`}>
             <div className="text-24 my-4 hover:underline">
               {e.title.charAt(0).toUpperCase() + e.title.slice(1)}
             </div>
