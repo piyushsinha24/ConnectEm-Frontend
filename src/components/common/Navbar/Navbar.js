@@ -9,7 +9,7 @@ const Navbar = () => {
   const { logout, isAuthenticated } = useAuthContext();
 
   return (
-    <div className="shadow-md fixed top-0 left-0 w-full bg-light-bright">
+    <div className="shadow-md fixed top-0 z-10 left-0 w-full bg-light-bright">
       <Container>
         <div className="font-epilogue flex justify-between items-center h-56 xl:h-72 px-16 xl:px-48">
           <Link to="/">

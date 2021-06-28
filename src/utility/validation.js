@@ -43,3 +43,9 @@ export const registerSchema = yup.object().shape({
     .min(6, 'Password must be atleast be 6 characters')
     .required('This field is required'),
 });
+
+export const eventCreationSchema = yup.object().shape({
+  title: yup.string().required('This field is required'),
+  description: yup.string().required('This field is required'),
+  eventLink: yup.string().required('This field is required'),
+});

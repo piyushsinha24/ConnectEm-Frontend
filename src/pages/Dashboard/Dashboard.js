@@ -8,7 +8,7 @@ const Dashboard = () => {
   return (
     <div>
       <Container>
-        <div className="px-16 py-24 mt-56 xl:px-48 xl:py-36 xl:mt-72">
+        <div className="px-16 py-24 mt-56 xl:mt-72 xl:px-48 xl:py-36">
           <p className="font-work">Welcome {user?.firstName},</p>
         </div>
       </Container>
