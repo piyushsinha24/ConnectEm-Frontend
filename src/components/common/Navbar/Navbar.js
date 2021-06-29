@@ -19,12 +19,7 @@ const Navbar = () => {
           </Link>
           <div className="flex items-center">
             {isAuthenticated() ? (
-              <Button
-                displayType="secondary"
-                size="sm"
-                onClick={() => logout()}
-                className="mr-16"
-              >
+              <Button displayType="secondary" size="sm" onClick={() => logout()}>
                 Logout
               </Button>
             ) : (

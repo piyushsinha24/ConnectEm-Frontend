@@ -46,6 +46,7 @@ const CreateEvent = () => {
       selectedDate.timeSlot = {
         startTime,
         endTime,
+        available: 1,
       };
       setCalendarError(false);
     },
@@ -83,6 +84,7 @@ const CreateEvent = () => {
           {
             from: startDateJSObject.toUTCString(),
             to: endDateJSObject.toUTCString(),
+            available: date.availableSlot,
           },
         ],
       };
@@ -95,6 +97,18 @@ const CreateEvent = () => {
     };
   };
 
+  const areSlotsValid = () => {
+    if (!dates?.length) {
+      return false;
+    }
+
+    const isValid = dates?.reduce((acc, date) => {
+      return acc && !!date?.isSlotValid;
+    }, true);
+
+    return isValid;
+  };
+
   const onCreateEvent = async () => {
     setApiError('');
 
@@ -105,11 +119,16 @@ const CreateEvent = () => {
         setErrors,
       });
 
-      if (!dates.length) {
-        setCalendarError(true);
+      if (!isValid) {
+        return;
       }
 
-      if (!isValid) {
+      if (!dates.length) {
+        setCalendarError(true);
+        return;
+      }
+
+      if (!areSlotsValid()) {
         return;
       }
 
