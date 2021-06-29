@@ -26,9 +26,6 @@ function App() {
           <ProtectedRoute path="/create">
             <CreateEvent />
           </ProtectedRoute>
-          {/* <ProtectedRoute path="/event/:id">
-            <EventInfo />
-          </ProtectedRoute> */}
         </Suspense>
       </Switch>
     </div>
