@@ -10,6 +10,7 @@ const Dashboard = lazy(() => import('./pages/Dashboard'));
 const CreateEvent = lazy(() => import('./pages/CreateEvent'));
 const BookingPage = lazy(() => import('./pages/BookingPage'));
 const NotFoundPage = lazy(() => import('./pages/NotFoundPage'));
+const EventInfo = lazy(() => import('./pages/EventInfo'));
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
           <Route path="/login" component={LoginPage} />
           <Route path="/register" component={RegisterPage} />
           <Route path="/book/:eventId" component={BookingPage} />
+          <Route path="/event/:id" component={EventInfo} />
           <ProtectedRoute path="/dashboard">
             <Dashboard />
           </ProtectedRoute>
