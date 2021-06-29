@@ -47,7 +47,10 @@ export const registerSchema = yup.object().shape({
 export const eventCreationSchema = yup.object().shape({
   title: yup.string().required('This field is required'),
   description: yup.string().required('This field is required'),
-  eventLink: yup.string().required('This field is required'),
+  eventLink: yup
+    .string()
+    .url('Event link must be a valid link')
+    .required('This field is required'),
 });
 
 export const bookingSchema = yup.object().shape({
@@ -55,5 +58,14 @@ export const bookingSchema = yup.object().shape({
   email: yup
     .string()
     .email('Invalid email format')
+    .required('This field is required'),
+});
+
+export const slotSchema = yup.object().shape({
+  available: yup
+    .number()
+    .typeError('Slots must be a number')
+    .min(1, 'Atleast 1 slot is required')
+    .max(10, 'Maximum slot for a date cannot be more than 10')
     .required('This field is required'),
 });

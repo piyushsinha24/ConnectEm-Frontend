@@ -1,12 +1,38 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import Button from '../../../../components/common/Button';
+import Input from '../../../../components/common/Input';
 import { getTimeInfoList } from '../../../../utility/helpers';
+import { slotSchema, validate } from '../../../../utility/validation';
 
 const DateCard = ({ date, deleteDate, updateTimeSlotList }) => {
   const [startTime, setStartTime] = useState('0000');
   const [endTime, setEndTime] = useState('0000');
 
+  const [errors, setErrors] = useState({ available: 'This field is required' });
+
   const timeSlotList = useMemo(() => getTimeInfoList(), []);
+
+  const onSlotChange = async (e) => {
+    const isSlotValid = !!date.isSlotValid;
+
+    const isValid = await validate({
+      schema: slotSchema,
+      formData: { available: e.target.value },
+      setErrors,
+    });
+
+    if (isValid) {
+      date.availableSlot = e.target.value;
+
+      if (!isSlotValid) {
+        date.isSlotValid = true;
+      }
+    } else {
+      if (isSlotValid) {
+        date.isSlotValid = false;
+      }
+    }
+  };
 
   const renderSelectList = (value, setFunc) => {
     return (
@@ -56,6 +82,15 @@ const DateCard = ({ date, deleteDate, updateTimeSlotList }) => {
                 {renderSelectList(endTime, setEndTime)}
               </div>
             </div>
+            <Input
+              label="Available Slots *"
+              type="number"
+              name="available"
+              placeholder="Available slots"
+              onChange={onSlotChange}
+              error={errors['available']}
+              className="mt-8"
+            />
           </div>
         </div>
         <div className="flex">
