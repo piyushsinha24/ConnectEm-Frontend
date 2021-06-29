@@ -1197,6 +1197,18 @@
   "resolved" "https://registry.npmjs.org/@bcoe/v8-coverage/-/v8-coverage-0.2.3.tgz"
   "version" "0.2.3"
 
+"@bedrock-layout/use-forwarded-ref@^1.1.4":
+  "integrity" "sha512-kDSIFUrSExIgbrErrH9FXLH5ah806gVFRxAWETztSU2j0p+CcrAijNzdd0azwgra065jlsc6c2AezEwEEqPa8A=="
+  "resolved" "https://registry.npmjs.org/@bedrock-layout/use-forwarded-ref/-/use-forwarded-ref-1.1.8.tgz"
+  "version" "1.1.8"
+  dependencies:
+    "@bedrock-layout/use-stateful-ref" "^1.1.8"
+
+"@bedrock-layout/use-stateful-ref@^1.1.8":
+  "integrity" "sha512-MDMW1tN9VqsbdXpaPRhqn6jwwUqwmyfDSSDrPK+rEB9EQXwf1v7KD6B1f+sBrXlLzKPYFDIyPRJMxLAaMm37JQ=="
+  "resolved" "https://registry.npmjs.org/@bedrock-layout/use-stateful-ref/-/use-stateful-ref-1.1.8.tgz"
+  "version" "1.1.8"
+
 "@cnakazawa/watch@^1.0.3":
   "integrity" "sha512-v9kIhKwjeZThiWrLmj0y17CWoyddASLj9O2yvbZkbvw/N3rWOYy9zkV66ursAoVr0mV15bL8g0c4QZUE6cdDoQ=="
   "resolved" "https://registry.npmjs.org/@cnakazawa/watch/-/watch-1.0.4.tgz"
@@ -2900,6 +2912,11 @@
     "raw-body" "2.4.0"
     "type-is" "~1.6.17"
 
+"body-scroll-lock@^3.1.5":
+  "integrity" "sha512-Yi1Xaml0EvNA0OYWxXiYNqY24AfWkbA6w5vxE7GWxtKfzIbZM+Qw+aSmkgsbWzbHiy/RCSkUZBplVxTA+E4jJg=="
+  "resolved" "https://registry.npmjs.org/body-scroll-lock/-/body-scroll-lock-3.1.5.tgz"
+  "version" "3.1.5"
+
 "bonjour@^3.5.0":
   "integrity" "sha1-jokKGD2O6aI5OzhExpGkK897yfU="
   "resolved" "https://registry.npmjs.org/bonjour/-/bonjour-3.5.0.tgz"
@@ -3409,7 +3426,7 @@
     "isobject" "^3.0.0"
     "static-extend" "^0.1.1"
 
-"classnames@^2.3.1":
+"classnames@^2.2.6", "classnames@^2.3.1":
   "integrity" "sha512-OlQdbZ7gLfGarSqxesMesDa5uz7KFbID8Kpq/SxIoNGDqY8lSYs0D+hhtBXhcdB3rcbXArFr7vlHheLk1voeNA=="
   "resolved" "https://registry.npmjs.org/classnames/-/classnames-2.3.1.tgz"
   "version" "2.3.1"
@@ -9576,7 +9593,7 @@
     "strip-ansi" "6.0.0"
     "text-table" "0.2.0"
 
-"react-dom@^17.0.2", "react-dom@>=16", "react-dom@>=16.8.0":
+"react-dom@^17.0.2":
   "integrity" "sha512-s4h96KtLDUQlsENhMn1ar8t2bEa+q/YAtj8pPPdIjPDGBDIVNsrD9aXNWqspUe6AzKCIG0C1HZZLqLV7qpOBGA=="
   "resolved" "https://registry.npmjs.org/react-dom/-/react-dom-17.0.2.tgz"
   "version" "17.0.2"
@@ -9617,6 +9634,15 @@
   "integrity" "sha512-X8jZHc7nCMjaCqoU+V2I0cOhNW+QMBwSUkeXnTi8IPe6zaRWfn60ZzvFDZqWPfmSJfjub7dDW1SP0jaHWLu/hg=="
   "resolved" "https://registry.npmjs.org/react-refresh/-/react-refresh-0.8.3.tgz"
   "version" "0.8.3"
+
+"react-responsive-modal@^6.1.0":
+  "integrity" "sha512-A0HUi0VCkLucfKblljLytnPXJ0FTnEOwYh/Yg3HSU0pT6Uevkc5bjDc+ai7RTZ6ENnXS+rR55i62tWpsW7B5EQ=="
+  "resolved" "https://registry.npmjs.org/react-responsive-modal/-/react-responsive-modal-6.1.0.tgz"
+  "version" "6.1.0"
+  dependencies:
+    "@bedrock-layout/use-forwarded-ref" "^1.1.4"
+    "body-scroll-lock" "^3.1.5"
+    "classnames" "^2.2.6"
 
 "react-router-dom@^5.2.0":
   "integrity" "sha512-gxAmfylo2QUjcwxI63RhQ5G85Qqt4voZpUXSEqCwykV0baaOTQDR1f0PmY8AELqIyVc0NEZUj0Gov5lNGcXgsA=="
@@ -9720,7 +9746,7 @@
   dependencies:
     "clsx" "^1.1.1"
 
-"react@^15.3.0 || ^16.0.0 || ^17.0.0", "react@^17.0.2", "react@>=16", "react@>=16.8.0":
+"react@^17.0.2":
   "integrity" "sha512-gnhPt75i/dq/z3/6q/0asP78D0u592D5L1pd7M8P+dck6Fu/jJeL6iVVK23fptSUZj8Vjf++7wXA8UNclGQcbA=="
   "resolved" "https://registry.npmjs.org/react/-/react-17.0.2.tgz"
   "version" "17.0.2"

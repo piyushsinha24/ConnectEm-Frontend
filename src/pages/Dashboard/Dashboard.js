@@ -189,7 +189,7 @@ const Dashboard = () => {
               </Button>
             </Link>
           </div>
-          <div className="flex flex-col xl:flex-row justify-center items-center xl:justify-start xl:items-start my-16">
+          <div className="flex flex-col xl:flex-row flex-wrap justify-center items-center xl:justify-center xl:items-start my-16">
             {isLoading && loadingCard()}
             {isEvent && events.map((e, index) => eventCard(e, index))}
           </div>
