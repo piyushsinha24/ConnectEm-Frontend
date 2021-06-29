@@ -57,6 +57,7 @@ const spacing = {
   108: '108px',
   300: '300px',
   400: '400px',
+  900: '900px',
 };
 
 const maxWidths = {

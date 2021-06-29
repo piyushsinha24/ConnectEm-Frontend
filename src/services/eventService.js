@@ -10,6 +10,15 @@ export const userEvents = async () => {
   }
 };
 
+export const getEventDetails = async (params) => {
+  try {
+    const { data } = await publicAxios.get(`/event/${params.id}`, params);
+    return { data };
+  } catch (error) {
+    return { error };
+  }
+};
+
 export const Event = async (params) => {
   try {
     const { data } = await publicAxios.get(`/event/${params}`);
