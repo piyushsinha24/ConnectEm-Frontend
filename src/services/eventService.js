@@ -9,6 +9,15 @@ export const userEvents = async () => {
   }
 };
 
+export const Event = async (params) => {
+  try {
+    const { data } = await protectedAxios.get(`/event/${params}`);
+    return { data };
+  } catch (error) {
+    return { error };
+  }
+};
+
 export const toggleEvent = async (params) => {
   try {
     const { data } = await protectedAxios.post(`/event/toggle/${params}`);
