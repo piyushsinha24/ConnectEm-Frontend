@@ -8,24 +8,28 @@ const LoginPage = lazy(() => import('./pages/Login'));
 const RegisterPage = lazy(() => import('./pages/Register'));
 const Dashboard = lazy(() => import('./pages/Dashboard'));
 const CreateEvent = lazy(() => import('./pages/CreateEvent'));
+const BookingPage = lazy(() => import('./pages/BookingPage'));
+const NotFoundPage = lazy(() => import('./pages/NotFoundPage'));
 
 function App() {
   return (
     <div>
       <Navbar />
-      <Switch>
-        <Suspense fallback={<div>Loading...</div>}>
+      <Suspense fallback={<div>Loading...</div>}>
+        <Switch>
           <Route exact path="/" component={LandingPage} />
           <Route path="/login" component={LoginPage} />
           <Route path="/register" component={RegisterPage} />
+          <Route path="/book/:eventId" component={BookingPage} />
           <ProtectedRoute path="/dashboard">
             <Dashboard />
           </ProtectedRoute>
           <ProtectedRoute path="/create">
             <CreateEvent />
           </ProtectedRoute>
-        </Suspense>
-      </Switch>
+          <Route component={NotFoundPage} />
+        </Switch>
+      </Suspense>
     </div>
   );
 }

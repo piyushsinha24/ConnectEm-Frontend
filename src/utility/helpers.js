@@ -1,3 +1,5 @@
+import { DateObject } from 'react-multi-date-picker';
+
 export const getTomorrowsDate = () => {
   const today = new Date();
   const tomorrow = new Date(today);
@@ -22,4 +24,28 @@ export const getTimeInfoList = () => {
   }
 
   return timeList;
+};
+
+export const formatDateToFullStr = (date) => {
+  try {
+    const dateObj = new DateObject(new Date(date));
+    const formatedStr = dateObj.format('dddd, DD/MM/YYYY');
+    return formatedStr;
+  } catch {
+    return date;
+  }
+};
+
+export const formatDateToTimeStr = (date) => {
+  try {
+    const dateObj = new DateObject(new Date(date));
+    const formatedStr = dateObj.format('HH:mm a');
+    return formatedStr;
+  } catch {
+    return date;
+  }
+};
+
+export const getUserTimeZone = () => {
+  return Intl.DateTimeFormat().resolvedOptions().timeZone;
 };

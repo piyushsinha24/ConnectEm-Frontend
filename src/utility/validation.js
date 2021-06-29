@@ -49,3 +49,11 @@ export const eventCreationSchema = yup.object().shape({
   description: yup.string().required('This field is required'),
   eventLink: yup.string().required('This field is required'),
 });
+
+export const bookingSchema = yup.object().shape({
+  name: yup.string().required('This field is required'),
+  email: yup
+    .string()
+    .email('Invalid email format')
+    .required('This field is required'),
+});
