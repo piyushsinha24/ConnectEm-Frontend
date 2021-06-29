@@ -1,4 +1,5 @@
 import protectedAxios from './axios/protectedAxios';
+import publicAxios from './axios/publicAxios';
 
 export const userEvents = async () => {
   try {
@@ -11,7 +12,7 @@ export const userEvents = async () => {
 
 export const Event = async (params) => {
   try {
-    const { data } = await protectedAxios.get(`/event/${params}`);
+    const { data } = await publicAxios.get(`/event/${params}`);
     return { data };
   } catch (error) {
     return { error };

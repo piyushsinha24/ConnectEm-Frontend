@@ -16,7 +16,7 @@ const EventInfo = (props) => {
   const [apiError, setApiError] = useState('');
   const [isToggling, setIsToggling] = useState(false);
   const notify = () => toast('Event link copied!');
-  let { id } = props.match.params;
+  const { id } = props.match.params;
 
   useEffect(() => {
     const fetchEvent = async () => {
@@ -95,7 +95,7 @@ const EventInfo = (props) => {
       <Container>
         <div className="px-16 py-24 mt-56 xl:px-48 xl:py-36 xl:mt-72">
           {isLoading && loadingCard()}
-          {isEvent && (
+          {isEvent && !isLoading && (
             <div className="flex flex-col xl:flex-row font-work">
               <div className="mb-36 xl:mb-0 xl:mr-36 w-full xl:w-1/3">
                 <div className="bg-light-default p-24 space-y-12 xl:rounded-4 xl:shadow-card xl:p-24">
