@@ -5,6 +5,7 @@ const btnType = {
   PRIMARY: 'primary',
   SECONDARY: 'secondary',
   DISABLED: 'disabled',
+  ERROR: 'error',
 };
 
 const btnSize = {
@@ -23,7 +24,7 @@ const Button = ({ displayType, size, className, children, ...rest }) => {
       case btnSize.MD:
         return 'text-16 px-16 h-48';
       case btnSize.LG:
-        return 'text-16 py-8 px-16';
+        return 'text-16 px-24 h-56';
       default:
         return '';
     }
@@ -37,6 +38,8 @@ const Button = ({ displayType, size, className, children, ...rest }) => {
         return 'text-dark-default border-dark-default border-2';
       case btnType.DISABLED:
         return 'text-light-grey border-light-grey border-2 cursor-not-allowed';
+      case btnType.ERROR:
+        return 'text-red-default border-red-default border-2';
       default:
         return '';
     }

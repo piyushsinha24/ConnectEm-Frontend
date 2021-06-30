@@ -22,6 +22,7 @@ const BookingPage = () => {
   });
 
   const hostName = `${eventDetails?.host?.firstName} ${eventDetails?.host?.lastName}`;
+  const isEventOpen = eventDetails?.isActive;
 
   return (
     <div>
@@ -36,18 +37,20 @@ const BookingPage = () => {
               <p className="text-center font-bold font-work">{apiError}</p>
             ) : (
               <div>
-                <div className="mb-16 flex justify-between flex-col xl:mb-24 xl:items-end xl:flex-row">
-                  <div>
-                    <h2 className="font-bold text-24 font-epilogue">
-                      {eventDetails?.title}
-                    </h2>
-                    <p className="font-work">{eventDetails?.description}</p>
-                  </div>
-                  <p className="font-work mt-16">
-                    Created by{' '}
-                    <span className="font-bold">{`${hostName}(Host)`}</span>
-                  </p>
+                <div>
+                  <h2 className="font-bold text-24 font-epilogue">
+                    {eventDetails?.title}
+                  </h2>
+                  <p className="font-work">{eventDetails?.description}</p>
                 </div>
+                <p className="font-work mt-8 mb-16 text-right xl:mb-24">
+                  Created by <span className="font-bold">{`${hostName}(Host)`}</span>
+                </p>
+                {!isEventOpen && (
+                  <Alert displayType="danger" className="mb-16">
+                    This event has been closed by the host.
+                  </Alert>
+                )}
                 <div>
                   <div className="space-y-12 xl:space-y-16">
                     {eventDetails?.timings?.map((timing, index) => {
@@ -55,6 +58,7 @@ const BookingPage = () => {
                         <BookingCard
                           timing={timing}
                           eventId={eventId}
+                          isEventOpen={isEventOpen}
                           reloadEventDetails={reloadEventDetails}
                           key={index}
                         />
@@ -71,7 +75,7 @@ const BookingPage = () => {
   );
 };
 
-const BookingCard = ({ timing, eventId, reloadEventDetails }) => {
+const BookingCard = ({ timing, eventId, isEventOpen, reloadEventDetails }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [formData, setFormData] = useState({
     name: '',
@@ -89,7 +93,7 @@ const BookingCard = ({ timing, eventId, reloadEventDetails }) => {
   const startTime = slots?.[0]?.from;
   const endTime = slots?.[0]?.to;
   const availableSlots = slots?.[0]?.available;
-  const canBookSlot = availableSlots > 0;
+  const canBookSlot = availableSlots > 0 && isEventOpen;
 
   const onInputChange = async (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -112,6 +116,7 @@ const BookingCard = ({ timing, eventId, reloadEventDetails }) => {
         eventID: eventId,
         dateID: currentDateId,
         slotID: slotId,
+        timezone: getUserTimeZone(),
       };
 
       setIsLoading(true);
@@ -164,8 +169,8 @@ const BookingCard = ({ timing, eventId, reloadEventDetails }) => {
               Book Slot
             </Button>
           ) : (
-            <Button displayType="primary" size="sm" onClick={() => {}}>
-              No slots
+            <Button displayType="error" size="sm" onClick={() => {}}>
+              Closed
             </Button>
           )}
         </div>
