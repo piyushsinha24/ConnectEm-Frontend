@@ -109,7 +109,7 @@ const Dashboard = () => {
             {e.timings.length > 1 ? (
               <p className="mb-8">+{e.timings.length - 1} more</p>
             ) : (
-              <p className="invisible">No more dates</p>
+              <p className="mb-8 invisible">No more dates</p>
             )}
           </Link>
           <div className="flex justify-between">
