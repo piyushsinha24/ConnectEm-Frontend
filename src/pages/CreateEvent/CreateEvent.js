@@ -1,14 +1,16 @@
 import React, { useCallback, useState } from 'react';
 import { Calendar, DateObject } from 'react-multi-date-picker';
+import { useHistory } from 'react-router-dom';
 import Button from '../../components/common/Button';
 import Input from '../../components/common/Input';
 import Alert from '../../components/common/Alert';
 import Container from '../../components/common/Container';
 import DateCard from './partials/DateCard';
-import { getTomorrowsDate } from '../../utility/helpers';
+import { getTomorrowsDate, getUserTimeZone } from '../../utility/helpers';
 import { eventCreationSchema, validate } from '../../utility/validation';
 import { createEvent } from '../../services/eventService';
-import { useHistory } from 'react-router-dom';
+
+import './CreateEvent.css';
 
 const CreateEvent = () => {
   const history = useHistory();
@@ -84,7 +86,7 @@ const CreateEvent = () => {
           {
             from: startDateJSObject.toUTCString(),
             to: endDateJSObject.toUTCString(),
-            available: date.availableSlot,
+            available: parseInt(date.availableSlot),
           },
         ],
       };
@@ -93,6 +95,7 @@ const CreateEvent = () => {
     return {
       ...formData,
       tags: [],
+      timezone: getUserTimeZone(),
       timings,
     };
   };
@@ -173,7 +176,11 @@ const CreateEvent = () => {
                 {isLoading && (
                   <Alert displayType="info">Creating event, please wait...</Alert>
                 )}
-                {apiError && <Alert displayType="danger">{apiError}</Alert>}
+                {apiError && (
+                  <Alert displayType="danger" className="mb-16">
+                    {apiError}
+                  </Alert>
+                )}
                 {eventCreationSuccess && (
                   <Alert displayType="success">
                     Event Created!, Redirecting to dashboard...
@@ -183,11 +190,14 @@ const CreateEvent = () => {
             </div>
           </div>
           <div className="flex flex-col xl:flex-row">
-            <div className="mb-36 xl:mb-0 xl:mr-36">
+            <div
+              className="mb-36 xl:sticky xl:top-108 xl:mb-0 xl:mr-36"
+              style={{ height: 'fit-content' }}
+            >
               <p className="font-epilogue font-bold mb-8 xl:mb-16 xl:w-400">
                 1. Enter details:
               </p>
-              <div className="py-0 px-0 space-y-12 xl:rounded-4 xl:shadow-card xl:p-24">
+              <div className="py-0 px-0 space-y-12 xl:border-1 xl:border-light-grey xl:rounded-4 xl:shadow-card xl:p-24">
                 <Input
                   label="Title *"
                   type="text"
@@ -218,14 +228,17 @@ const CreateEvent = () => {
                     href="https://meet.google.com/"
                     target="_blank"
                     rel="noreferrer"
-                    className="font-bold text-blue-default"
+                    className="font-bold text-primary-default underline"
                   >
                     Google Meet
                   </a>
                 </p>
               </div>
             </div>
-            <div className="mb-36 xl:mb-0 xl:mr-36">
+            <div
+              className="custom-calendar mb-36 xl:sticky xl:top-108 xl:mb-0 xl:mr-36"
+              style={{ height: 'fit-content' }}
+            >
               <p className="font-epilogue font-bold mb-8 xl:mb-16">
                 2. Select date(s):
               </p>
@@ -235,7 +248,7 @@ const CreateEvent = () => {
                 minDate={getTomorrowsDate()}
                 value={dates}
                 onChange={handleChange}
-                className={`font-work shadow-card ${
+                className={`font-work ${
                   calendarError ? 'border-1 border-red-default' : ''
                 }`}
               />
@@ -249,7 +262,7 @@ const CreateEvent = () => {
               <p className="font-epilogue font-bold mb-8 xl:mb-16">
                 3. What hours are you available?
               </p>
-              <div className="w-full rounded-4 bg-light-default py-0 px-0 space-y-12 xl:shadow-card xl:p-24">
+              <div className="w-full rounded-4 bg-light-default py-0 px-0 space-y-12 xl:border-1 xl:border-light-grey xl:shadow-card xl:p-24">
                 {!dates.length && (
                   <p className="font-work text-center">No date(s) are selected!</p>
                 )}

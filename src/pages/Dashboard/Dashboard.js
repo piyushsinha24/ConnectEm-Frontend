@@ -1,15 +1,15 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Container from '../../components/common/Container';
 import Button from '../../components/common/Button';
+import Alert from '../../components/common/Alert';
 import { Link } from 'react-router-dom';
 import { useAuthContext } from '../../contexts/AuthContext';
 import { userEvents, toggleEvent } from '../../services/eventService';
 import calendar from '../../assets/icons/calendar.svg';
 import refresh from '../../assets/icons/refresh.svg';
-import copy from '../../assets/icons/copy.svg';
 import { formatDate, formatTime } from '../../utility/helpers';
 
 const Dashboard = () => {
@@ -22,30 +22,26 @@ const Dashboard = () => {
   const [isToggling, setIsToggling] = useState(false);
   const notify = () => toast('Event link copied!');
 
-  useEffect(() => {
-    const fetchEvents = async () => {
-      if (apiError) setApiError('');
-      setIsLoading(true);
-      try {
-        const { data, error } = await userEvents();
-        if (error) {
-          const errorMessage =
-            error?.response?.data?.message || 'Something went wrong!';
+  const fetchEvents = useCallback(async () => {
+    setIsLoading(true);
+    try {
+      const { data, error } = await userEvents();
+      if (error) {
+        const errorMessage =
+          error?.response?.data?.message || 'Something went wrong!';
 
-          throw new Error(errorMessage);
-        }
-        if (Object.keys(data.data).length) {
-          setIsEvent(true);
-          setEvents(data.data);
-        }
-      } catch (error) {
-        setApiError(error.message);
-      } finally {
-        setIsLoading(false);
+        throw new Error(errorMessage);
       }
-    };
-    fetchEvents();
-  }, [apiError]);
+      if (Object.keys(data.data).length) {
+        setIsEvent(true);
+        setEvents(data.data);
+      }
+    } catch (error) {
+      setApiError(error.message);
+    } finally {
+      setIsLoading(false);
+    }
+  }, []);
 
   const handleToggle = async (e) => {
     setCurrentEvent(e.id);
@@ -70,19 +66,31 @@ const Dashboard = () => {
     }
   };
 
+  useEffect(() => {
+    fetchEvents();
+  }, [fetchEvents]);
+
   const eventCard = (e, index) => (
     <div
       key={index}
-      className="border border-light-grey bg-light-default font-work shadow-card rounded-md p-16 xl:mr-16 mb-16 w-full md:w-300"
+      className="border border-light-grey font-work shadow-card rounded-md p-16 mb-16 w-full md:w-300"
     >
       <div className="h-full">
         <div className="flex flex-col py-4 h-full w-full">
           <Link to={`/event/${e.id}`}>
-            <div className="text-24 border-1 p-16 border-light-grey rounded-4">
-              {e.title.charAt(0).toUpperCase() + e.title.slice(1)}
+            <div className="flex flex-row-reverse mb-4">
+              <p
+                className={`text-12 font-bold ${
+                  e.isActive ? 'text-primary-default' : 'text-red-default'
+                }`}
+              >
+                {e.isActive ? 'Public' : 'Closed'}
+              </p>
             </div>
-
-            <div className="text-21 my-2 truncate ...">{e.description}</div>
+            <div className="text-24 font-epilogue font-bold truncate rounded-4">
+              {e.title}
+            </div>
+            <div className="truncate mb-16">{e.description}</div>
             <div className="my-4 text-16">
               <img
                 className="inline-block w-16 h-16 m-4"
@@ -99,63 +107,54 @@ const Dashboard = () => {
               </p>
             </div>
             {e.timings.length > 1 ? (
-              <p>+{e.timings.length - 1} more</p>
+              <p className="mb-8">+{e.timings.length - 1} more</p>
             ) : (
               <p className="invisible">No more dates</p>
             )}
           </Link>
           <div className="flex justify-between">
             {e.isActive && (
-              <div className="mt-16 w-2/3">
-                <Button
-                  displayType="primary"
-                  className="w-full"
-                  onClick={() => handleToggle(e)}
-                >
-                  {isToggling && currentEvent === e.id ? (
-                    <img
-                      className="animate-spin inline-block w-16 h-16 m-4"
-                      src={refresh}
-                      alt="refresh-icon"
-                    ></img>
-                  ) : (
-                    'Turn Off'
-                  )}
-                </Button>
-              </div>
+              <Button
+                displayType="error"
+                size="sm"
+                onClick={() => handleToggle(e)}
+                className="cursor-pointer"
+              >
+                {isToggling && currentEvent === e.id ? (
+                  <img
+                    className="animate-spin inline-block w-16 h-16 m-4"
+                    src={refresh}
+                    alt="refresh-icon"
+                  ></img>
+                ) : (
+                  'Close event'
+                )}
+              </Button>
             )}
             {!e.isActive && (
-              <div className="mt-16 w-2/3">
-                <Button
-                  displayType="secondary"
-                  className="w-full"
-                  onClick={() => handleToggle(e)}
-                >
-                  {isToggling && currentEvent === e.id ? (
-                    <img
-                      className="animate-spin inline-block w-16 h-16 m-4"
-                      src={refresh}
-                      alt="refresh-icon"
-                    ></img>
-                  ) : (
-                    'Turn On'
-                  )}
-                </Button>
-              </div>
+              <Button
+                displayType="primary"
+                size="sm"
+                onClick={() => handleToggle(e)}
+              >
+                {isToggling && currentEvent === e.id ? (
+                  <img
+                    className="animate-spin inline-block w-16 h-16 m-4"
+                    src={refresh}
+                    alt="refresh-icon"
+                  ></img>
+                ) : (
+                  'Make Public'
+                )}
+              </Button>
             )}
             <CopyToClipboard
               onCopy={notify}
               text={`${process.env.REACT_APP_FRONTEND_API_URL}/book/${e.id}`}
             >
-              <div className="mt-16">
-                <Button displayType="secondary" size="md">
-                  <img
-                    className="inline-block w-24 h-24 m-4"
-                    src={copy}
-                    alt="copy-icon"
-                  ></img>
-                </Button>
-              </div>
+              <Button displayType="secondary" size="sm">
+                Copy Event Link
+              </Button>
             </CopyToClipboard>
           </div>
         </div>
@@ -178,18 +177,20 @@ const Dashboard = () => {
   );
 
   return (
-    <div className="bg-light-grey w-full min-h-screen text-dark-default">
+    <div className="w-full min-h-screen">
       <Container>
         <div className="px-16 py-24 mt-56 xl:px-48 xl:py-36 xl:mt-72">
           <div className="flex justify-between items-center">
-            <p className="font-work">Welcome {user?.firstName},</p>
+            <p className="font-work  font-bold text-16 xl:text-21">
+              Welcome {user?.firstName},
+            </p>
             <Link to="/create">
               <Button displayType="primary" type="submit">
                 + Create
               </Button>
             </Link>
           </div>
-          <div className="flex flex-col xl:flex-row flex-wrap justify-center items-center xl:justify-center xl:items-start my-16">
+          <div className="flex flex-col xl:flex-row flex-wrap justify-center items-center xl:justify-center xl:items-start my-16 xl:space-x-36 ">
             {isLoading && loadingCard()}
             {isEvent && events.map((e, index) => eventCard(e, index))}
           </div>
@@ -198,6 +199,7 @@ const Dashboard = () => {
               No events created.
             </div>
           )}
+          {apiError && <Alert displayType="danger">{apiError}</Alert>}
           <ToastContainer position="bottom-right" autoClose={3000} />
         </div>
       </Container>

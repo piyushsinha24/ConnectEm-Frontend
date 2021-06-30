@@ -19,9 +19,17 @@ const Navbar = () => {
           </Link>
           <div className="flex items-center">
             {isAuthenticated() ? (
-              <Button displayType="secondary" size="sm" onClick={() => logout()}>
-                Logout
-              </Button>
+              <div className="flex items-center">
+                <div className="font-bold underline mr-12 text-12 cursor-pointer xl:text-16 xl:mr-32">
+                  <Link to="/dashboard">Dashboard</Link>
+                </div>
+                <div
+                  className="font-bold underline text-12 cursor-pointer xl:text-16"
+                  onClick={() => logout()}
+                >
+                  Logout
+                </div>
+              </div>
             ) : (
               <>
                 <Button

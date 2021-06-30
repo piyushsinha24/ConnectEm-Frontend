@@ -68,7 +68,6 @@ export const formatTime = (
     hour: 'numeric',
     minute: 'numeric',
     hour12: true,
-    timeZoneName: 'short',
   }
 ) => {
   const date = new Date(str);

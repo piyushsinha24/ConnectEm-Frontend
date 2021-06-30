@@ -4,10 +4,10 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Container from '../../components/common/Container';
 import Button from '../../components/common/Button';
+import Alert from '../../components/common/Alert';
 import { Event, toggleEvent } from '../../services/eventService';
-import { formatDate, formatTime } from '../../utility/helpers';
+import { formatDate, formatTime, getUserTimeZone } from '../../utility/helpers';
 import refresh from '../../assets/icons/refresh.svg';
-import copy from '../../assets/icons/copy.svg';
 
 const EventInfo = (props) => {
   const [isLoading, setIsLoading] = useState(false);
@@ -20,7 +20,6 @@ const EventInfo = (props) => {
 
   useEffect(() => {
     const fetchEvent = async () => {
-      if (apiError) setApiError('');
       setIsLoading(true);
       try {
         const { data, error } = await Event(id);
@@ -41,7 +40,7 @@ const EventInfo = (props) => {
       }
     };
     fetchEvent();
-  }, [apiError, id]);
+  }, [id]);
 
   const handleToggle = async (e) => {
     setIsToggling(true);
@@ -66,13 +65,13 @@ const EventInfo = (props) => {
   const loadingCard = () => (
     <div className="animate-pulse flex flex-col xl:flex-row font-work">
       <div className="mb-36 xl:mb-0 xl:mr-36 w-full xl:w-1/3">
-        <div className="bg-light-default space-y-12 xl:rounded-4 xl:shadow-card p-24">
+        <div className="bg-light-default space-y-12 xl:rounded-4 xl:shadow-card xl:p-24">
           <div className="my-8 h-32 bg-light-grey rounded w-full"></div>
           <div className="my-8 h-16 bg-light-grey rounded w-full"></div>
         </div>
       </div>
       <div className="w-full">
-        <div className="w-full rounded-4 bg-light-default space-y-12 xl:shadow-card p-24">
+        <div className="w-full rounded-4 bg-light-default space-y-12 xl:shadow-card xl:p-24">
           <div className="text-24 border-1 p-16 border-light-grey rounded-4">
             <div className="my-8 h-16 bg-light-grey rounded w-full"></div>
             <div className="text-16">
@@ -91,52 +90,64 @@ const EventInfo = (props) => {
   );
 
   return (
-    <div className="bg-light-grey w-full min-h-screen text-dark-default">
+    <div className="w-full min-h-screen text-dark-default">
       <Container>
         <div className="px-16 py-24 mt-56 xl:px-48 xl:py-36 xl:mt-72">
           {isLoading && loadingCard()}
+          {apiError && <Alert displayType="danger">{apiError}</Alert>}
           {isEvent && !isLoading && (
             <div className="flex flex-col xl:flex-row font-work">
-              <div className="mb-36 xl:mb-0 xl:mr-36 w-full xl:w-1/3">
-                <div className="bg-light-default p-24 space-y-12 xl:rounded-4 xl:shadow-card xl:p-24">
-                  <div className="text-24 border-1 p-16 border-light-grey rounded-4">
-                    {event?.title?.charAt(0).toUpperCase() + event?.title?.slice(1)}
+              <div className="mb-24 xl:mb-0 xl:mr-36 w-full xl:w-1/3">
+                <div className="bg-light-default xl:rounded-4 xl:shadow-card xl:p-24">
+                  <div className="flex flex-row-reverse mb-4">
+                    <p
+                      className={`text-12 font-bold ${
+                        event.isActive ? 'text-primary-default' : 'text-red-default'
+                      }`}
+                    >
+                      {event.isActive ? 'Public' : 'Closed'}
+                    </p>
                   </div>
-                  <div className="text-21">{event.description}</div>
+                  <div className="text-24 font-epilogue font-bold rounded-4">
+                    {event?.title}
+                  </div>
+                  <div>{event.description}</div>
                   <div className="flex justify-between">
                     {event.isActive && (
-                      <div className="mt-16 w-2/3">
+                      <div className="mt-16">
                         <Button
-                          displayType="primary"
-                          className="w-full"
+                          displayType="error"
+                          size="sm"
                           onClick={() => handleToggle(event)}
                         >
-                          {isToggling && (
+                          {isToggling ? (
                             <img
                               className="animate-spin inline-block w-16 h-16 m-4"
                               src={refresh}
                               alt="refresh-icon"
                             ></img>
+                          ) : (
+                            'Close event'
                           )}
-                          Turn Off
                         </Button>
                       </div>
                     )}
                     {!event.isActive && (
-                      <div className="mt-16 w-2/3">
+                      <div className="mt-16">
                         <Button
-                          displayType="secondary"
-                          className="w-full"
+                          displayType="primary"
+                          size="sm"
                           onClick={() => handleToggle(event)}
                         >
-                          {isToggling && (
+                          {isToggling ? (
                             <img
                               className="animate-spin inline-block w-16 h-16 m-4"
                               src={refresh}
                               alt="refresh-icon"
                             ></img>
+                          ) : (
+                            'Make Public'
                           )}
-                          Turn On
                         </Button>
                       </div>
                     )}
@@ -145,12 +156,8 @@ const EventInfo = (props) => {
                       text={`${process.env.REACT_APP_FRONTEND_API_URL}/book/${event.id}`}
                     >
                       <div className="mt-16">
-                        <Button displayType="secondary" size="md">
-                          <img
-                            className="inline-block w-24 h-24 m-4"
-                            src={copy}
-                            alt="copy-icon"
-                          ></img>
+                        <Button displayType="secondary" size="sm">
+                          Copy Event Link
                         </Button>
                       </div>
                     </CopyToClipboard>
@@ -158,15 +165,19 @@ const EventInfo = (props) => {
                 </div>
               </div>
               <div className="w-full">
-                <div className="w-full rounded-4 bg-light-default space-y-12 xl:shadow-card p-24">
+                <div className="w-full rounded-4 bg-light-default space-y-12 xl:shadow-card xl:p-24">
                   {event?.timings?.map((t, index) => (
                     <div
                       key={index}
-                      className="text-24 border-1 p-16 border-light-grey rounded-4"
+                      className="border-1 p-16 border-light-grey rounded-4"
                     >
-                      {formatDate(t.date)}
-                      <div className="text-16">
-                        {formatTime(t.slots[0].from)} - {formatTime(t.slots[0].to)}
+                      <p className="font-work text-16 font-bold xl:mb-8 xl:mr-56 xl:text-21">
+                        {formatDate(t.date)}
+                      </p>
+                      <div className="text-16 font-bold">
+                        {`${formatTime(t.slots[0].from)} - ${formatTime(
+                          t.slots[0].to
+                        )} (${getUserTimeZone()})`}
                       </div>
                       <p className="text-16">
                         Slots available: {t.slots[0].available ?? '0'}
