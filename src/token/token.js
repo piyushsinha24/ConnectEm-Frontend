@@ -82,6 +82,11 @@ const shadows = {
   card: '0 10px 20px rgb(0 0 0 / 20%)',
 };
 
+const minHeight = {
+  600: '600px',
+  900: '900px',
+};
+
 module.exports = {
   colors,
   typography,
@@ -90,4 +95,5 @@ module.exports = {
   borederRadius,
   borderWidth,
   shadows,
+  minHeight,
 };

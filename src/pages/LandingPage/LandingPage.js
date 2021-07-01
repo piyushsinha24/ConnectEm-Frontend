@@ -42,7 +42,7 @@ function LandingPage() {
   return (
     <div>
       <Container>
-        <div className="h-screen flex items-center relative">
+        <div className="h-screen flex items-center relative min-h-600 xl:min-h-900">
           <img
             className="w-200 mt-48 absolute left-0 top-0 xl:w-auto"
             src={topSquares}

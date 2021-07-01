@@ -6,6 +6,7 @@ const {
   borederRadius,
   borderWidth,
   shadows,
+  minHeight,
 } = require('./src/token/token');
 
 module.exports = {
@@ -25,6 +26,9 @@ module.exports = {
       ...maxWidths,
     },
     extend: {
+      minHeight: {
+        ...minHeight,
+      },
       spacing: {
         ...spacing,
       },
