@@ -1,70 +1,73 @@
-# Getting Started with Create React App
+[![Netlify Status](https://api.netlify.com/api/v1/badges/24a496f0-22e4-4936-94bd-98edd828490f/deploy-status)](https://app.netlify.com/sites/connectem/deploys)
+# 🚀 ConnectEm - Your one stop to simple Daily Meeting scheduler
+<img src="https://cdn.hashnode.com/res/hashnode/image/upload/v1625086364633/dLtoqTRYr.png?w=1600&h=840&fit=crop&crop=entropy&auto=compress" alt="connectem">
+<a target="_blank" href="https://hashnode.com/n/harperdbhackathon">#HarperDBHackathon</a>
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## :link: Quick Links
+- [Live](https://connectem.netlify.app/)
+- [Frontend Repository](https://github.com/piyushsinha24/ConnectEm-Frontend) / [Backend Repository](https://github.com/piyushsinha24/ConnectEm-Backend)
+- [API Documentation](https://documenter.getpostman.com/view/8870498/TzeZFnL2#6bf13e9f-e92d-4a52-9836-00c232c1920a)
 
-## Available Scripts
+## 💻 Screens
+Landing Page          |  Signup 
+:-------------------------:|:-------------------------:
+<img src="https://cdn.hashnode.com/res/hashnode/image/upload/v1625094784076/HWd0qSStC.png?w=450&h=240&fit=crop&crop=entropy&auto=compress" alt="connectem-landing"> | <img src="https://cdn.hashnode.com/res/hashnode/image/upload/v1625090382457/nXiMHGkO4.png?w=450&h=240&fit=crop&crop=entropy&auto=compress" alt="connectem-signup">
+Dashboard           |  Create Event
+<img src="https://cdn.hashnode.com/res/hashnode/image/upload/v1625094452868/Fp-bUmVci.png?w=450&h=240&fit=crop&crop=entropy&auto=compress" alt="connectem-dashboard"> | <img src="https://cdn.hashnode.com/res/hashnode/image/upload/v1625095177251/U3osU4BG9.png?w=450&h=240&fit=crop&crop=entropy&auto=compress" alt="connectem-createEvent">
+Event Info           |  Event Booking
+<img src="https://cdn.hashnode.com/res/hashnode/image/upload/v1625100653214/rnR2Pe7zL.png?w=450&h=240&fit=crop&crop=entropy&auto=compress" alt="connectem-eventInfo"> | <img src="https://cdn.hashnode.com/res/hashnode/image/upload/v1625101161718/k8KxQ8PWj.png?w=450&h=240&fit=crop&crop=entropy&auto=compress" alt="connectem-eventBookingLink">
 
-In the project directory, you can run:
 
-### `yarn start`
+## 🍔 Technology Stack
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+### Frontend
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+- [React](https://reactjs.org/) - a JavaScript library for building user interfaces.
+- [TailwindCSS](https://tailwindcss.com/) - a utility-first CSS framework for rapid UI development.
+- [Netlify](https://www.netlify.com/) - an intuitive Git-based workflow and powerful serverless platform to build and deploy web apps.
 
-### `yarn test`
+### Backend
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- [Nest](https://nestjs.com/) - a progressive Node.js framework for building efficient, reliable and scalable server-side applications.
+- [HarperDB](https://harperdb.io/) - a distributed database with NoSQL and SQL capabilities.
+- [Heroku](https://www.heroku.com/) - a platform as a service (PaaS) to build, monitor and deploy web apps and APIs.
 
-### `yarn build`
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## 🤝 Contributing
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Whenever you find a bug, create an `issue` and tag relevant people. 
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+When developing a `feature`:
 
-### `yarn eject`
+- Always branch out from the `develop` branch.
+- Branch name convention- `feature/whatever-you-building-name`.
+- Test your feature on your `feature branch` and then create PR to `develop` with screenshot, if applicable.
+- After PRs are accumulated on develop branch, we will use release versions and release to `master`.
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+## :page_facing_up: License
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+All the code available under the MIT license. See [LICENSE](LICENSE).
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+```sh
+MIT License
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+Copyright (c) 2021 Piyush Sinha
 
-## Learn More
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `yarn build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+```
