@@ -77,41 +77,39 @@ const Dashboard = () => {
     >
       <div className="h-full">
         <div className="flex flex-col py-4 h-full w-full">
-          <Link to={`/event/${e.id}`}>
-            <div className="flex flex-row-reverse mb-4">
-              <p
-                className={`text-12 font-bold ${
-                  e.isActive ? 'text-primary-default' : 'text-red-default'
-                }`}
-              >
-                {e.isActive ? 'Public' : 'Closed'}
-              </p>
-            </div>
-            <div className="text-24 font-epilogue font-bold truncate rounded-4">
-              {e.title}
-            </div>
-            <div className="truncate mb-16">{e.description}</div>
-            <div className="my-4 text-16">
-              <img
-                className="inline-block w-16 h-16 m-4"
-                src={calendar}
-                alt="calendar-icon"
-              ></img>
-              {formatDate(e.timings[0].date)}
-              <p className="text-16">
-                {formatTime(e.timings[0].slots[0].from)} -{' '}
-                {formatTime(e.timings[0].slots[0].to)}
-              </p>
-              <p className="text-16">
-                Slots available: {e.timings[0].slots[0].available ?? 0}
-              </p>
-            </div>
-            {e.timings.length > 1 ? (
-              <p className="mb-8">+{e.timings.length - 1} more</p>
-            ) : (
-              <p className="mb-8 invisible">No more dates</p>
-            )}
-          </Link>
+          <div className="flex flex-row-reverse mb-4">
+            <p
+              className={`text-12 font-bold ${
+                e.isActive ? 'text-primary-default' : 'text-red-default'
+              }`}
+            >
+              {e.isActive ? 'Public' : 'Closed'}
+            </p>
+          </div>
+          <div className="text-24 font-epilogue font-bold truncate rounded-4">
+            {e.title}
+          </div>
+          <div className="truncate mb-16">{e.description}</div>
+          <div className="my-4 text-16">
+            <img
+              className="inline-block w-16 h-16 m-4"
+              src={calendar}
+              alt="calendar-icon"
+            ></img>
+            {formatDate(e.timings[0].date)}
+            <p className="text-16">
+              {formatTime(e.timings[0].slots[0].from)} -{' '}
+              {formatTime(e.timings[0].slots[0].to)}
+            </p>
+            <p className="text-16">
+              Slots available: {e.timings[0].slots[0].available ?? 0}
+            </p>
+          </div>
+          {e.timings.length > 1 ? (
+            <p className="mb-8">+{e.timings.length - 1} more</p>
+          ) : (
+            <p className="mb-8 invisible">No more dates</p>
+          )}
           <div className="flex justify-between">
             {e.isActive && (
               <Button
@@ -158,6 +156,11 @@ const Dashboard = () => {
             </CopyToClipboard>
           </div>
         </div>
+        <Link to={`/event/${e.id}`}>
+          <p className="text-12 mt-12 underline text-center">
+            Click for more details
+          </p>
+        </Link>
       </div>
     </div>
   );

@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -93,6 +94,14 @@ const EventInfo = (props) => {
     <div className="w-full min-h-screen text-dark-default">
       <Container>
         <div className="px-16 py-24 mt-56 xl:px-48 xl:py-36 xl:mt-72">
+          <div className="flex justify-between items-center mb-16">
+            <p className="font-work  font-bold text-16 xl:text-21">Event details,</p>
+            <Link to="/create">
+              <Button displayType="primary" type="submit">
+                + Create
+              </Button>
+            </Link>
+          </div>
           {isLoading && loadingCard()}
           {apiError && <Alert displayType="danger">{apiError}</Alert>}
           {isEvent && !isLoading && (
